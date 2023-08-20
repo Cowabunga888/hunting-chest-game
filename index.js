@@ -3,7 +3,6 @@ let config = {
   type: Phaser.AUTO,
   width: 800,
   height: 600,
-  // transparent: true,
   physics: {
     default: 'arcade',
     arcade: {
@@ -21,8 +20,8 @@ let config = {
       height: 480
     },
     max: {
-      width: 800,
-      height: 600
+      width: 1400,
+      height: 1200
     }
   },
   scene: {
@@ -82,17 +81,12 @@ function preload() {
 
 function create() {
   this.add.image(400, 300, 'back-ground');
-
-  // let myCanvas = document.getElementsByTagName("canvas")
-  // myCanvas[0].style.width = `${window.innerWidth > 300 ? window.innerWidth : 300}px`;
-  // console.log(`${window.innerWidth > 300 ? window.innerWidth : 300}px`)
-  // myCanvas[0].style.height = `${window.innerWidth > 300 ? window.innerWidth - 100 : 200}px`;
+  this.scale.on('resize', this.resize, this);
 
   // add underground
   platforms = this.physics.add.staticGroup();
   greenLand = this.physics.add.staticGroup();
 
-  // greenLand.create(400, 568, 'greenLand').setScale(2).refreshBody();
   greenLand.create(400, 568, 'greenLand');
   platforms.create(600, 400, 'ground');
   platforms.create(50, 250, 'ground');
